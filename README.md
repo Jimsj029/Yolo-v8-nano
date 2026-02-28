@@ -1,1 +1,0 @@
-# Yolo-v8-nano

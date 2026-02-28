@@ -1,0 +1,8 @@
+path: C:/dataset
+
+train: images/train
+val: images/valid
+test: images/test
+
+names:
+  0: stitch_line
