@@ -1,4 +1,4 @@
-path: C:\new github repo\Yolo-v8-nano\dataset
+path: C:\new github repo\Yolo-v8-nano
 
 train: images/train
 val: images/valid
