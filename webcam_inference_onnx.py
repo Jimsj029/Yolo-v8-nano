@@ -3,14 +3,14 @@ import cv2
 import time
 
 # Load the trained ONNX model
-model = YOLO('runs/segment/train6/weights/best.onnx')
+model = YOLO('runs/segment/train_rpi_optimized2/weights/best.onnx')
 
 # Open webcam (0 is usually the default webcam)
 cap = cv2.VideoCapture(0)
 
 # Optimize for Raspberry Pi - lower resolution for faster processing
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)  # Try 416 if too slow on RPi
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)  # Try 416 if too slow on RPi
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)  # Optimized for RPi performance
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)  # Optimized for RPi performance
 cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)  # Minimize buffer for lower latency/
 cap.set(cv2.CAP_PROP_FPS, 30)
 
@@ -25,7 +25,7 @@ fps_counter = 0
 display_fps = 0
 
 print("=" * 50)
-print("Real-Time Stitch Line Detection (ONNX Model)")
+print("Real-Time Stitch Line Detection (ONNX RPi-Optimized2)")
 print("=" * 50)
 print("Controls:")
 print("  'q' - Quit")
@@ -45,7 +45,7 @@ while True:
         print("Error: Could not read frame")
         break
     
-    # Run YOLOv8 segmentation inference with ONNX model
+    # Run YOLOv8 segmentation inference with ONNX model (640x640 RPi optimized)
     # Higher confidence to avoid detecting fingers, higher IOU for better filtering
     results = model(frame, conf=confidence_threshold, iou=0.6, imgsz=640, verbose=False)
     
